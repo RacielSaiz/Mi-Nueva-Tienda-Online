@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda Online</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Tienda Online</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="views/add_product.html">Agregar Producto</a></li>
+                <li id="login-link"><a href="views/login.html">Iniciar Sesión</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+        <form id="search-form">
+            <input type="text" id="search-name" placeholder="Buscar por nombre">
+            <input type="text" id="search-description" placeholder="Buscar por descripción">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+    <main>
+        <section id="product-list">
+            <!-- Aquí se mostrarán los productos -->
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Mi Tienda Online</p>
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (loggedInUser) {
+                document.getElementById('login-link').style.display = 'none';
+                document.getElementById('logout-link').style.display = 'block';
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
